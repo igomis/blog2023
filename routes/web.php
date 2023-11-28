@@ -15,4 +15,23 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('inici');
+
+/*
+Route::get('posts', function () {
+    return "Llistat de POSTS";
+})->name('posts_listado');
+
+Route::get('posts/{id}', function ($id) {
+    return "Fitxa del POST ".$id;
+})->where('id', '[0-9]+')
+    ->name('posts_ficha');
+*/
+Route::get('posts', function () {
+    return view('posts.listado');
+})->name('posts_listado');
+
+Route::get('posts/{id}', function ($id) {
+    return view('posts.ficha', compact('id'));
+})->where('id', '[0-9]+')
+    ->name('posts_ficha');
