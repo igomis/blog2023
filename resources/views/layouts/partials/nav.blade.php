@@ -1,16 +1,9 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">Blog</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('inici') }}">Inicio</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('posts_listado') }}">Listado de posts</a>
-            </li>
-        </ul>
+<nav class="bg-gray-800 p-2 mt-0 w-full">
+    <div class="container mx-auto flex justify-between">
+        <a class="text-white text-3xl font-bold" href="#">Blog</a>
+        <div class="flex items-center space-x-1">
+            <a class="py-2 px-2 text-white" href="{{ route('inici') }}">Inicio</a>
+            <a class="py-2 px-2 text-white" href="{{ route('posts_listado') }}">Listado de posts</a>
+        </div>
     </div>
 </nav>

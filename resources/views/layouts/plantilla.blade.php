@@ -1,12 +1,13 @@
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="/css/app.css">
     <title>
         @yield('titulo')
     </title>
+    <!-- Scripts -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
-<div class="container">
+<div class="container mx-auto px-4">
     @include('layouts.partials.nav')
     @yield('contenido')
 </div>
