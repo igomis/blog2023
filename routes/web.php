@@ -30,6 +30,7 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
+/*
 Route::get('posts', function () {
     return 'LLISTAT DE POSTS';
 })->name('posts_listado');
@@ -47,3 +48,6 @@ Route::get('posts/{id}', function ($id) {
     return view('posts.ficha', compact('id'));
 })->where('id', '[0-9]+')
     ->name('posts_ficha');
+*/
+
+Route::resource('posts',PostController::class)->only(['index','show','create','edit']);
