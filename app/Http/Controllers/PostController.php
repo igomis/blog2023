@@ -13,7 +13,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('posts.index');
+        $posts = Post::with('author')->orderBy('titulo', 'ASC')->paginate(5);
+        return view('posts.index', compact('posts'));
     }
 
     /**
@@ -81,6 +82,28 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
+        //Comentario::where('post_id', $id)->delete();
+        Post::findOrFail($id)->delete();
+        return redirect()->route('posts.index');
+    }
+    public function nuevoPrueba()
+    {
         //
+        $x = rand();
+        $post = new Post();
+        $post->titulo = 'Titulo '. $x;
+        $post->contenido = 'Contenido '. $x;
+        $post->save();
+        return redirect()->route('posts.show', $post->id);
+    }
+
+    public function editarPrueba($id)
+    {
+        $x = rand();
+        $post = Post::findOrFail($id);
+        $post->titulo = 'Titulo '. $x;
+        $post->contenido = 'Contenido '. $x;
+        $post->save();
+        return redirect()->route('posts.show', $post->id);
     }
 }

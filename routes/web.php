@@ -50,4 +50,6 @@ Route::get('posts/{id}', function ($id) {
     ->name('posts_ficha');
 */
 
-Route::resource('posts',PostController::class)->only(['index','show','create','edit']);
+Route::resource('posts',PostController::class)->only(['index','show','create','edit','destroy']);
+Route::get('posts/nuevoPrueba', 'PostController@nuevoPrueba')->name('nuevoPrueba');
+Route::get('posts/editarPrueba/{id}', 'PostController@editarPrueba')->name('editarPrueba');
