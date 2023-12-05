@@ -5,7 +5,7 @@
     <ul>
         @forelse($posts as $post)
             <li class="pb-2">
-                {{ $post->titulo }} ({{$post->autor->login}})
+                {{ $post->titulo }} ({{$post->autor->email}})
                 <a href="{{ route('posts.show', $post) }}" class="btn btn-info">Ver</a>
                 <form action="{{ route('posts.destroy', $post) }}" method="POST" class="d-inline-block">
                     @method('DELETE')
