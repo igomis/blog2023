@@ -1,16 +1,15 @@
 @extends('layouts.plantilla')
 @section('titulo', 'Ficha post')
 @section('contenido')
-    <h1>{{ $post->titulo }}</h1>
-    <section>
-        <article>
-            <div>
+    <h1 class="text-2xl font-bold mb-4">{{ $post->titulo }}</h1>
+    <section class="mt-4">
+        <article class="p-4 bg-white shadow-lg rounded-lg">
+            <div class="text-gray-700 text-base">
                 {{ $post->contenido }}
             </div>
             <br>
-            <footer>
-                Escrito por {{$post->autor->login}} el
-
+            <footer class="text-gray-600 text-sm">
+                Escrito por {{$post->autor->name}} el
                 {{ $post->created_at->locale('es_ES')->dayName}},
                 {{ $post->created_at->day}} de
                 {{ $post->created_at->locale('es_ES')->monthName }} de
@@ -19,23 +18,22 @@
             </footer>
         </article>
 
-        <a href="{{ route('posts.edit', $post) }}" class="btn btn-success">Editar</a>
-        <form action="{{ route('posts.destroy', $post) }}" method="POST" class="d-inline-block">
+        <a href="{{ route('posts.edit', $post) }}" class="mt-4 inline-block bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Editar</a>
+        <form action="{{ route('posts.destroy', $post) }}" method="POST" class="inline-block">
             @method('DELETE')
             @csrf
-            <button class="btn btn-danger"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z"/>
-                </svg>
+            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded inline-flex items-center">
+                <i class="fas fa-trash-alt"></i>
             </button>
         </form>
 
         <br><br>
-        <h3>Comentarios:</h3>
+        <h3 class="text-xl font-semibold mt-8">Comentarios:</h3>
         @foreach($post->comentarios as $comentario)
-            <div>
-                <div>{{ $comentario->contenido }}</div>
-                <footer>
-                    {{$comentario->autor->login}},
+            <div class="mt-4 p-4 bg-gray-100 rounded-lg">
+                <div class="text-gray-700 text-base">{{ $comentario->contenido }}</div>
+                <footer class="text-gray-600 text-sm">
+                    {{$comentario->autor->name}},
                     {{ Carbon\Carbon::parse($comentario->created_at)->format('d/m/y') }}
                 </footer>
             </div>
@@ -43,5 +41,6 @@
         @endforeach
 
     </section>
+
 
 @endsection

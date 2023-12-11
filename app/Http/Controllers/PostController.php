@@ -48,7 +48,8 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        return view('posts.show', compact('id'));
+        $post = Post::with('autor')->findOrFail($id);
+        return view('posts.show', compact('post'));
     }
 
     /**

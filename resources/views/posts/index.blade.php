@@ -1,26 +1,28 @@
 @extends('layouts.plantilla')
 @section('titulo', 'Listado posts')
 @section('contenido')
-    <h1>Listado de posts</h1>
-    <ul>
+    <h1 class="text-3xl font-bold text-gray-800 mb-6">Listado de posts</h1>
+    <ul class="list-disc list-inside">
         @forelse($posts as $post)
-            <li class="pb-2">
-                {{ $post->titulo }} ({{$post->autor->email}})
-                <a href="{{ route('posts.show', $post) }}" class="btn btn-info">Ver</a>
-                <form action="{{ route('posts.destroy', $post) }}" method="POST" class="d-inline-block">
+            <li class="pb-2 border-b border-gray-200 mb-4">
+                <span class="text-lg text-gray-700">{{ $post->titulo }} ({{$post->autor->email}})</span>
+                <a href="{{ route('posts.show', $post) }}" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">Ver</a>
+                <form action="{{ route('posts.destroy', $post) }}" method="POST" class="inline-block">
                     @method('DELETE')
                     @csrf
-                    <button class="btn btn-danger"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z"/>
-                        </svg>
+                    <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded inline-flex items-center">
+                        <i class="fas fa-trash-alt"></i>
                     </button>
                 </form>
-                <a href="{{ route('posts.edit', $post) }}" class="btn btn-success">Editar</a>
+                <a href="{{ route('posts.edit', $post) }}" class="inline-block bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded ml-2">Editar</a>
             </li>
         @empty
-            <li>No hay posts</li>
+            <li class="text-gray-700">No hay posts</li>
         @endforelse
     </ul>
 
-    {{ $posts->links() }}
+    <div class="mt-6">
+        {{ $posts->links() }} <!-- Asegúrate de tener un componente de paginación personalizado para Tailwind CSS -->
+    </div>
+
 @endsection
