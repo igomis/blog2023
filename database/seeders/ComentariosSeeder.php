@@ -17,7 +17,7 @@ class ComentariosSeeder extends Seeder
     {
         $posts = Post::All();
         $posts->each(function($post) {
-            Comentario::factory()->count(3)->create(['post_id' => $post->id]);
+            Comentario::factory()->count(20)->create(['post_id' => $post->id]);
         });
     }
 }

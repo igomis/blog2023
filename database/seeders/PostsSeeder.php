@@ -17,7 +17,7 @@ class PostsSeeder extends Seeder
     {
         $usuarios = User::All();
         $usuarios->each(function($autor) {
-            Post::factory()->count(3)->create(['autor_id' => $autor->id]);
+            Post::factory()->count(20)->create(['autor_id' => $autor->id]);
         });
     }
 }

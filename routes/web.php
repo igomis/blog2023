@@ -30,5 +30,5 @@ Route::middleware('auth')->group(function () {
 });
 require __DIR__.'/auth.php';
 
-Route::resource('/posts', 'PostController')->only('edit','update','destroy')->middleware('isAuthor');
+Route::resource('posts', PostController::class)->only('edit','update','destroy')->middleware('isAuthor');
 Route::resource('posts',PostController::class)->only(['index','show']);
