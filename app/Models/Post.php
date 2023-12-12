@@ -11,11 +11,11 @@ class Post extends Model
 
     public function autor()
     {
-        return $this->belongsTo('App\Models\User', 'autor_id', 'id');
+        return $this->belongsTo(User::class, 'autor_id', 'id');
     }
 
     public function comentarios()
     {
-        return $this->hasMany('App\Models\Comentario', 'post_id', 'id');
+        return $this->hasMany(Comentario::class, 'post_id', 'id');
     }
 }

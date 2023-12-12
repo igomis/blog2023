@@ -5,6 +5,7 @@
             <a class="py-2 px-2 text-white" href="{{ route('inici') }}">Inicio</a>
             <a class="py-2 px-2 text-white" href="{{ route('posts.index') }}">Listado de posts</a>
             <a class="py-2 px-2 text-white" href="{{ route('posts.create') }}">Nou Post</a>
+            <a class="py-2 px-2 text-white" href="{{ route('posts.show',['post'=>1]) }}">Vore Post</a>
             <i class="py-2 px-2 text-white"> {{ fechaActual() }}</i>
         </div>
     </div>
