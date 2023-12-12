@@ -1,6 +1,9 @@
-@extends('layouts.plantilla')
-@section('titulo', 'Ficha post')
-@section('contenido')
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            {{ __('Ver post') }}
+        </h2>
+    </x-slot>
     <h1 class="text-2xl font-bold mb-4">{{ $post->titulo }}</h1>
     <section class="mt-4">
         <article class="p-4 bg-white shadow-lg rounded-lg">
@@ -17,15 +20,16 @@
                 {{ $post->created_at->format('H:m') }} horas
             </footer>
         </article>
-
-        <a href="{{ route('posts.edit', $post) }}" class="mt-4 inline-block bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Editar</a>
-        <form action="{{ route('posts.destroy', $post) }}" method="POST" class="inline-block">
-            @method('DELETE')
-            @csrf
-            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded inline-flex items-center">
-                <i class="fas fa-trash-alt"></i>
-            </button>
-        </form>
+        @if (Auth::user())
+            <a href="{{ route('posts.edit', $post) }}" class="mt-4 inline-block bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Editar</a>
+            <form action="{{ route('posts.destroy', $post) }}" method="POST" class="inline-block">
+                @method('DELETE')
+                @csrf
+                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded inline-flex items-center">
+                    <i class="fas fa-trash-alt"></i>
+                </button>
+            </form>
+        @endif
 
         <br><br>
         <h3 class="text-xl font-semibold mt-8">Comentarios:</h3>
@@ -39,8 +43,5 @@
             </div>
             <br>
         @endforeach
-
     </section>
-
-
-@endsection
+</x-app-layout>
